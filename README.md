@@ -3,7 +3,7 @@
 Read data from a **Wavin Calefa II** district-heating apartment station
 (DHW 212 V ITC display/controller) over its RS-485 Modbus RTU port, and
 document its register map. The unit is integrated into Home Assistant through
-an ESP32-C3 gateway running ESPHome (`esphome/calefa_modbus.yaml`).
+an ESP32 gateway (Seeed XIAO ESP32-C6) running ESPHome (`esphome/calefa_modbus.yaml`).
 
 ## Hardware
 
@@ -33,7 +33,7 @@ The user must be in the `dialout` group to open the serial port.
 | `scan.py` | Finds every valid address in all four tables (0–65535) → `scan_result.json` |
 | `wavin_calefa.py` | Poller: reads all valid registers and decodes them by name |
 | `REGISTER_MAP.md` | **Register map** worked out so far (confirmed vs. guessed) |
-| `esphome/calefa_modbus.yaml` | ESPHome package (ESP32-C3: TX GPIO5, RX GPIO7, DE/RE GPIO6) exposing sensors, alarms and setpoints to Home Assistant |
+| `esphome/calefa_modbus.yaml` | ESPHome config (XIAO ESP32-C6: TX GPIO0, RX GPIO2, DE/RE GPIO1) exposing sensors, alarms and setpoints to Home Assistant |
 | `docs/` | Wavin Sentio Modbus manual and the earlier technical report |
 | `scan_result.json`, `scan_log.txt` | Raw output of the full address scan |
 | `watch_*.csv / *.txt` | Recordings used to identify registers (heating switch-off, hot water draw, parameter edits) |
@@ -78,4 +78,4 @@ A full poll (~1200 values) takes about 4.5 s at 9600 bps.
 
 * Identify the remaining unknown registers (see "Still open" in `REGISTER_MAP.md`).
 * ~~Write test via Modbus (FC06)~~ – done: hot water setpoint, room setpoint and heat offset all write correctly.
-* ~~ESP32 gateway~~ – done: ESP32-C3 Super Mini + RS-485 transceiver running ESPHome, config in `esphome/calefa_modbus.yaml`.
+* ~~ESP32 gateway~~ – done: Seeed XIAO ESP32-C6 + RS-485 transceiver running ESPHome, config in `esphome/calefa_modbus.yaml`.

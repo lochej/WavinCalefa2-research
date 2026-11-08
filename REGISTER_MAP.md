@@ -106,13 +106,14 @@ document's numbers map 1:1 onto them (no −1 offset).
 
 | Reg | R/W | Meaning | |
 |---|---|---|---|
+| IR 7310 (= IR 10009) | R | **Heating circuit pressure**, ×0.01 bar (matches the display: 1.6 bar = 160) | ✔ |
 | IR 7701 | R | Heating supply temperature (T2) | ✔ |
 | IR 7702 | R | Heating return temperature (T1) | ✔ |
 | IR 7703 | R | Heating flow target (heat curve output) | ~ |
 | IR 7706 (= IR 7304 = HR 7302) | R | ITC valve opening / heat demand (×0.01 %?) | ~ |
 | IR 7301 | R | Heating active (1/0) | ~ |
 | IR 7704 / 7705 | R | Pump demand / state? | ? |
-| HR 7701 | RW | **Heat curve slope** ×0.1 (13 = 1.3); confirmed by changing 1.2 → 1.3 on the display | ✔ |
+| HR 7701 | RW | **Heat curve slope** ×0.1 (13 = 1.3); confirmed by changing 1.2 → 1.3 on the display; Modbus write (1.2 → 1.4) tested OK, display follows | ✔ |
 | HR 7703 | RW | Heat curve slope, second copy (changed together with HR 7701) | ~ |
 | HR 7705 | RW | **Radiator heat offset** (800 = 8 °C); Modbus write tested OK, display follows | ✔ |
 | HR 7706 | RW | **Heat curve minimum flow temperature** (3700 = 37 °C) | ✔ |

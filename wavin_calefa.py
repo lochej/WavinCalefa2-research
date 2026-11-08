@@ -135,7 +135,7 @@ REGS: list[Reg] = [
     Reg("input", 7303, "o73_ir7303", "IR7303 ?"),
     Reg("input", 7304, "itc_valve_7304", "ITC valve/demand (=IR7706)?", scale=0.01, unit="%"),
     Reg("input", 7306, "o73_temp_7306", "Temp 7306 (outdoor?)", T, unit="°C"),
-    Reg("input", 7310, "o73_ir7310", "IR7310 ?", scale=0.01),
+    Reg("input", 7310, "heating_pressure", "Heating circuit pressure (=IR10009)", scale=0.01, unit="bar"),
 
     # ---------------- 75xx room temperature presets ------------------------
     Reg("holding", 7501, "room_setpoint", "Room setpoint (currently selected)", T, unit="°C", writable=True),

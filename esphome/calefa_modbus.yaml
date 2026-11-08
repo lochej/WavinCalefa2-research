@@ -296,6 +296,19 @@ sensor:
     state_class: measurement
     accuracy_decimals: 0
 
+  # ---------------- heating circuit pressure (IR 7310) ----------------
+  - platform: modbus_controller
+    modbus_controller_id: calefa
+    name: "Heating circuit pressure"
+    register_type: read
+    address: 7310
+    value_type: U_WORD
+    unit_of_measurement: "bar"
+    device_class: pressure
+    state_class: measurement
+    accuracy_decimals: 2
+    filters: [multiply: 0.01]
+
   # ---------------- heating circuit (IR 7701-7706, one request) ----------------
   - platform: modbus_controller
     modbus_controller_id: calefa
@@ -342,36 +355,17 @@ sensor:
     accuracy_decimals: 1
     filters: [multiply: 0.01]
 
-  # ---------------- heat curve settings (HR 7701 / 7705-7707) ----------------
+  # HR 7703 changes together with the slope (HR 7701) when edited on the display.
+  # Kept as a read-only diagnostic to check it follows when the slope is written via Modbus.
   - platform: modbus_controller
     modbus_controller_id: calefa
-    name: "Heat curve slope"
+    name: "Heat curve slope (copy)"
     register_type: holding
-    address: 7701
+    address: 7703
     value_type: U_WORD
     accuracy_decimals: 1
     entity_category: diagnostic
     filters: [multiply: 0.1]
-  - platform: modbus_controller
-    modbus_controller_id: calefa
-    name: "Heat curve min flow"
-    register_type: holding
-    address: 7706
-    value_type: S_WORD
-    unit_of_measurement: "°C"
-    accuracy_decimals: 1
-    entity_category: diagnostic
-    filters: [multiply: 0.01]
-  - platform: modbus_controller
-    modbus_controller_id: calefa
-    name: "Heat curve max flow"
-    register_type: holding
-    address: 7707
-    value_type: S_WORD
-    unit_of_measurement: "°C"
-    accuracy_decimals: 1
-    entity_category: diagnostic
-    filters: [multiply: 0.01]
 
   # ---------------- derived values ----------------
   - platform: template
@@ -484,4 +478,38 @@ number:
     min_value: -9
     max_value: 9
     step: 1
+
+  # ---------------- heat curve (HR 7701 / 7706-7707) – not yet write-tested ----------------
+  - platform: modbus_controller
+    modbus_controller_id: calefa
+    name: "Heat curve slope"
+    address: 7701
+    value_type: U_WORD
+    multiply: 10
+    min_value: 0.2
+    max_value: 3.0
+    step: 0.1
+    mode: box
+  - platform: modbus_controller
+    modbus_controller_id: calefa
+    name: "Heat curve min flow"
+    address: 7706
+    value_type: S_WORD
+    multiply: 100
+    min_value: 20
+    max_value: 50
+    step: 1
+    unit_of_measurement: "°C"
+    mode: box
+  - platform: modbus_controller
+    modbus_controller_id: calefa
+    name: "Heat curve max flow"
+    address: 7707
+    value_type: S_WORD
+    multiply: 100
+    min_value: 30
+    max_value: 70
+    step: 1
+    unit_of_measurement: "°C"
+    mode: box
 
