@@ -14,6 +14,7 @@ document's numbers map 1:1 onto them (no −1 offset).
   so only read inside the valid ranges below.
 * FC01 (coils) is not supported. FC03 / FC04 / FC02 work.
 * A full poll of all ~1200 values takes ~4.5 s at 9600 bps.
+* Writes with FC06 (write single register) work: tested on HR 6521, 7501 and 7705 from ESPHome; the display follows immediately.
 
 ## Valid ranges
 
@@ -71,7 +72,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 | HR 6517 | RW | DHW mode: 0 SCHEDULE, 1 SCHEDULE_ADAPTIVE, 2 ECO, 3 COMFORT | ~ |
 | HR 6518 | RW | Display access level (<40 user, ≥40 installer) | ~ |
 | HR 6519 | RW | Block request | ~ |
-| HR 6521 | RW | **DHW setpoint** (5000 = 50 °C) | ✔ |
+| HR 6521 | RW | **DHW setpoint** (5000 = 50 °C); Modbus write tested OK | ✔ |
 | HR 6522 | RW | Bypass temperature (40 °C) | ~ |
 | HR 6523 | RW | Circulation pump present | ~ |
 | HR 6524 | RW | Circulation inlet temperature (45 °C) | ~ |
@@ -95,7 +96,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 
 | Reg | R/W | Meaning | |
 |---|---|---|---|
-| HR 7501 | RW | Currently selected room setpoint | ✔ |
+| HR 7501 | RW | Currently selected room setpoint; Modbus write tested OK | ✔ |
 | HR 7502 | RW | Preset ECO (18 °C) | ✔ |
 | HR 7503 | RW | Preset COMFORT (20 °C) | ✔ |
 | HR 7504 | RW | Preset EXTRA COMFORT (23 °C) | ✔ |
@@ -105,7 +106,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 
 | Reg | R/W | Meaning | |
 |---|---|---|---|
-| IR 7701 | R | Heating flow temperature (T2) | ✔ |
+| IR 7701 | R | Heating supply temperature (T2) | ✔ |
 | IR 7702 | R | Heating return temperature (T1) | ✔ |
 | IR 7703 | R | Heating flow target (heat curve output) | ~ |
 | IR 7706 (= IR 7304 = HR 7302) | R | ITC valve opening / heat demand (×0.01 %?) | ~ |
@@ -113,6 +114,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 | IR 7704 / 7705 | R | Pump demand / state? | ? |
 | HR 7701 | RW | **Heat curve slope** ×0.1 (13 = 1.3); confirmed by changing 1.2 → 1.3 on the display | ✔ |
 | HR 7703 | RW | Heat curve slope, second copy (changed together with HR 7701) | ~ |
+| HR 7705 | RW | **Radiator heat offset** (800 = 8 °C); Modbus write tested OK, display follows | ✔ |
 | HR 7706 | RW | **Heat curve minimum flow temperature** (3700 = 37 °C) | ✔ |
 | HR 7707 | RW | **Heat curve maximum flow temperature** (4900 = 49 °C) | ✔ |
 | HR 7708 | RW | ITC regulator P gain ×0.1 (15 = 1.5) | ~ |
@@ -123,7 +125,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 | HR 7716 | RW | **Return limiter maximum temperature** (4000 → 3900 confirmed) | ✔ |
 | HR 7717 | RW | Return limiter gain at the maximum limit, signed ×0.1 (−2.0) | ~ |
 | HR 7718 | RW | **Return limiter priority over flow temperature** 0 OFF / 1 ON (confirmed) | ✔ |
-| HR 7702, 7704-7705, 7710-7712, 7719-7724 | RW | Other ITC parameters (7704 = 10, 7705 = 800, 7710 = 500, 7712 = 2500 …) | ? |
+| HR 7702, 7704, 7710-7712, 7719-7724 | RW | Other ITC parameters (7704 = 10, 7710 = 500, 7712 = 2500 …) | ? |
 
 Hysteresis (1.0 → 1.1) and offset (5 → 6) changed **no** Modbus register (holding, input or discrete), so they are either not exposed or stored only in the display.
 

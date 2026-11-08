@@ -176,6 +176,7 @@ REGS: list[Reg] = [
 
     Reg("holding", 7701, "heat_curve_slope", "Heat curve slope", scale=0.1, writable=True),
     Reg("holding", 7703, "heat_curve_slope_2", "Heat curve slope (2nd copy/active?)", scale=0.1, writable=True),
+    Reg("holding", 7705, "radiator_heat_offset", "Radiator heat offset", T, unit="°C", writable=True),
     Reg("holding", 7706, "heat_curve_min", "Heat curve min flow temperature", T, unit="°C", writable=True),
     Reg("holding", 7707, "heat_curve_max", "Heat curve max flow temperature", T, unit="°C", writable=True),
     Reg("holding", 7708, "itc_p_gain", "ITC regulator P gain", scale=0.1, writable=True),
