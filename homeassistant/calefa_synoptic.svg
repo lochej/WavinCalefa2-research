@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+<rect width="1000" height="600" rx="18" fill="#1e293b"/>
+<path d="M760 530 H40" fill="none" stroke="#3b82f6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40 420 H760" fill="none" stroke="#ef4444" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M540 420 V230 H490" fill="none" stroke="#ef4444" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M490 110 H600 V530" fill="none" stroke="#3b82f6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M600 398 V442" stroke="#1e293b" stroke-width="19"/><path d="M600 392 V448" fill="none" stroke="#3b82f6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40 110 H400" fill="none" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M400 230 H40" fill="none" stroke="#f97316" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M850 420 H960" fill="none" stroke="#f59e0b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M960 530 H850" fill="none" stroke="#818cf8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="91,101 109,110 91,119" fill="#38bdf8" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="89,221 71,230 89,239" fill="#f97316" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="91,411 109,420 91,429" fill="#ef4444" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="531,339 540,321 549,339" fill="#ef4444" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="691,411 709,420 691,429" fill="#ef4444" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="591,191 600,209 609,191" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="591,471 600,489 609,471" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="489,521 471,530 489,539" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="109,521 91,530 109,539" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="931,411 949,420 931,429" fill="#f59e0b" stroke="#1e293b" stroke-width="1.5"/>
+<polygon points="974,521 956,530 974,539" fill="#818cf8" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="400" y="80" width="90" height="180" rx="10" fill="#334155" stroke="#94a3b8" stroke-width="2"/><polyline points="420,94 470,109 420,124 470,140 420,155 470,170 420,185 470,200 420,216 470,231 420,246" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linejoin="round"/><text x="445.0" y="66" font-size="19" text-anchor="middle" fill="#cbd5e1" font-weight="600">Hot water exchanger</text><text x="482" y="252" font-size="15" text-anchor="end" fill="#94a3b8" font-weight="normal">01</text>
+<rect x="760" y="395" width="90" height="160" rx="10" fill="#334155" stroke="#94a3b8" stroke-width="2"/><polyline points="780,409 830,422 780,435 830,449 780,462 830,475 780,488 830,501 780,515 830,528 780,541" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linejoin="round"/><text x="805.0" y="381" font-size="19" text-anchor="middle" fill="#cbd5e1" font-weight="600">Heating exchanger</text><text x="842" y="547" font-size="15" text-anchor="end" fill="#94a3b8" font-weight="normal">02</text>
+<g stroke="#e2e8f0" stroke-width="2"><line x1="600" y1="300" x2="624" y2="300"/><rect x="624" y="287" width="14" height="26" rx="3" fill="#334155"/><polygon points="586,283 600,300 614,283" fill="#334155"/><polygon points="586,317 600,300 614,317" fill="#334155"/></g>
+<g stroke="#e2e8f0" stroke-width="2"><line x1="660" y1="530" x2="660" y2="506"/><rect x="647" y="492" width="26" height="14" rx="3" fill="#334155"/><polygon points="643,516 660,530 643,544" fill="#334155"/><polygon points="677,516 660,530 677,544" fill="#334155"/></g>
+<rect x="186" y="97" width="28" height="26" rx="4" fill="#334155" stroke="#e2e8f0" stroke-width="2"/>
+<polygon points="194,103 208,110 194,117" fill="#e2e8f0"/>
+<circle cx="930" cy="530" r="17" fill="#334155" stroke="#e2e8f0" stroke-width="2"/>
+<polygon points="937,520 919,530 937,540" fill="#e2e8f0"/>
+<line x1="885" y1="530" x2="885" y2="553" stroke="#94a3b8" stroke-width="3"/>
+<circle cx="885" cy="567" r="15" fill="#334155" stroke="#e2e8f0" stroke-width="2"/>
+<line x1="885" y1="567" x2="894" y2="559" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="868" y="32" width="20" height="28" rx="3" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+<line x1="878" y1="38" x2="878" y2="54" stroke="#94a3b8" stroke-width="2"/>
+<text x="40" y="92" font-size="20" text-anchor="start" fill="#94a3b8" font-weight="normal">Cold water in</text>
+<text x="40" y="262" font-size="20" text-anchor="start" fill="#94a3b8" font-weight="normal">Hot water out</text>
+<text x="40" y="450" font-size="20" text-anchor="start" fill="#94a3b8" font-weight="normal">District supply</text>
+<text x="40" y="562" font-size="20" text-anchor="start" fill="#94a3b8" font-weight="normal">District return</text>
+<text x="985" y="452" font-size="20" text-anchor="end" fill="#94a3b8" font-weight="normal">To radiators</text>
+<text x="985" y="506" font-size="20" text-anchor="end" fill="#94a3b8" font-weight="normal">From radiators</text>
+<text x="858" y="54" font-size="20" text-anchor="end" fill="#94a3b8" font-weight="normal">Outdoor</text>
+<text x="40" y="48" font-size="24" text-anchor="start" fill="#cbd5e1" font-weight="700">Calefa II V ITC</text>
+</svg>

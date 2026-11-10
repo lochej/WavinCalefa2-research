@@ -262,7 +262,8 @@ sensor:
     filters: [multiply: 0.01]
   - platform: modbus_controller
     modbus_controller_id: calefa
-    name: "District return temperature"   # T6
+    id: t6
+    name: "Hot water primary return"   # T6: exchanger 01 primary out, before valve 37 (stagnant when valve closed)
     register_type: read
     address: 6507
     register_count: 2               # bridges 6508
@@ -295,6 +296,17 @@ sensor:
     device_class: volume_flow_rate
     state_class: measurement
     accuracy_decimals: 0
+  - platform: modbus_controller
+    modbus_controller_id: calefa
+    id: dhw_valve
+    name: "Hot water valve"          # PICV 37, 0 when no tap is open
+    register_type: read
+    address: 6511
+    value_type: U_WORD
+    unit_of_measurement: "%"
+    state_class: measurement
+    accuracy_decimals: 1
+    filters: [multiply: 0.01]
 
   # ---------------- heating circuit pressure (IR 7310) ----------------
   - platform: modbus_controller
@@ -323,7 +335,8 @@ sensor:
     filters: [multiply: 0.01]
   - platform: modbus_controller
     modbus_controller_id: calefa
-    name: "Heating return temperature" # T1
+    id: t1
+    name: "Heating primary return"   # T1: exchanger 02 primary out, before valve 22 (stagnant when valve closed)
     register_type: read
     address: 7702
     value_type: S_WORD
@@ -346,6 +359,7 @@ sensor:
     filters: [multiply: 0.01]
   - platform: modbus_controller
     modbus_controller_id: calefa
+    id: heat_valve
     name: "Heating valve"
     register_type: read
     address: 7706
@@ -368,6 +382,23 @@ sensor:
     filters: [multiply: 0.1]
 
   # ---------------- derived values ----------------
+  # District return estimated from the two primary returns, each weighted by its
+  # valve opening (both are PICVs, so flow ~ opening). A sensor whose valve is
+  # closed reads stagnant water and is ignored. K = max-flow ratio of the hot
+  # water valve (37) to the heating valve (22); 1.0 until the valve sizes are known.
+  - platform: template
+    name: "District return (estimated)"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    state_class: measurement
+    accuracy_decimals: 1
+    update_interval: 10s
+    lambda: |-
+      const float K = 1.0;
+      float wd = (isnan(id(dhw_valve).state) || isnan(id(t6).state)) ? 0 : id(dhw_valve).state * K;
+      float wh = (isnan(id(heat_valve).state) || isnan(id(t1).state)) ? 0 : id(heat_valve).state;
+      if (wd + wh < 0.5) return NAN;   // both valves closed: no primary flow
+      return ((wd > 0 ? wd * id(t6).state : 0) + (wh > 0 ? wh * id(t1).state : 0)) / (wd + wh);
   - platform: template
     name: "Hot water power"
     unit_of_measurement: "kW"
@@ -429,7 +460,7 @@ binary_sensor:
     device_class: problem
   - platform: modbus_controller
     modbus_controller_id: calefa
-    name: "District return sensor failure"
+    name: "Hot water primary return sensor failure"
     register_type: discrete_input
     address: 6507
     device_class: problem

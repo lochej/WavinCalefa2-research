@@ -1,0 +1,179 @@
+type: vertical-stack
+cards:
+  - type: picture-elements
+    image: /local/calefa_synoptic.svg
+    elements:
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_district_supply_temperature
+        style:
+          left: 20.0%
+          top: 66.0%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_hot_water_primary_return
+        style:
+          left: 56%
+          top: 14.7%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_hot_water_temperature
+        style:
+          left: 32%
+          top: 34%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: number.basement_wavin_calefa_hot_water_setpoint
+        prefix: "set "
+        style:
+          left: 11.0%
+          top: 34%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_cold_water_temperature
+        style:
+          left: 32%
+          top: 14.7%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_hot_water_flow
+        style:
+          left: 20.0%
+          top: 24.2%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_hot_water_power
+        style:
+          left: 32%
+          top: 24.2%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_heating_primary_return
+        style:
+          left: 68%
+          top: 95%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_heating_valve
+        prefix: ""
+        style:
+          left: 67%
+          top: 78%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_hot_water_valve
+        prefix: ""
+        style:
+          left: 70%
+          top: 50.0%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_heating_supply_temperature
+        style:
+          left: 94%
+          top: 66.3%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_heating_flow_target
+        prefix: "target "
+        style:
+          left: 88.5%
+          top: 56.3%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: number.basement_wavin_calefa_room_setpoint
+        prefix: "room "
+        style:
+          left: 89%
+          top: 50.3%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: number.basement_wavin_calefa_manual_heat_offset
+        prefix: "man. offset "
+        style:
+          left: 86.8%
+          top: 44.3%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_heating_circuit_pressure
+        style:
+          left: 80.5%
+          top: 96.0%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_outdoor_temperature
+        style:
+          left: 89%
+          top: 14%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: state-label
+        entity: sensor.basement_wavin_calefa_district_return_estimated
+        prefix: "≈ "
+        style:
+          left: 20.0%
+          top: 84.3%
+          color: white
+          font-size: clamp(9px, 1.35vw, 14px)
+          font-weight: 600
+          white-space: nowrap
+      - type: conditional
+        conditions:
+          - entity: binary_sensor.basement_wavin_calefa_hot_water_in_use
+            state: "on"
+        elements:
+          - type: icon
+            icon: mdi:water
+            style:
+              left: 33.5%
+              top: 34.3%
+              color: "#f97316"
+              "--mdc-icon-size": 28px
+grid_options:
+  columns: full

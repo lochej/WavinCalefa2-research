@@ -32,13 +32,18 @@ document's numbers map 1:1 onto them (no −1 offset).
 
 | Sensor | Raw IR | Role-mapped IR | Meaning | |
 |---|---|---|---|---|
-| T1 | 12801 | 7702, 10001, 10017 | Heating return | ✔ |
+| T1 | 12801 | 7702, 10001, 10017 | Heating exchanger (02) primary return, district side, before valve 22 | ✔ |
 | T2 | 12802 | 7701, 10002, 10018 | Heating flow (supply) | ✔ |
 | T3 | 12803 | 6509, 10003 | Cold water inlet (DCW) | ✔ (dropped to 11.8 °C when tapping) |
 | T4 | 12804 | 6505, 10004 | DHW outlet (hot tap water) | ✔ (regulated to the 50 °C setpoint) |
 | T5 | 12805 | 6506, 10005 | Primary (district heating) supply | ✔ |
-| T6 | 12806 | 6507, 10006 | Primary return | ✔ (dropped to 17 °C when tapping) |
+| T6 | 12806 | 6507, 10006 | Hot water exchanger (01) primary return, district side, before valve 37 | ✔ (dropped to 17 °C when tapping) |
 | T7 | 12807 | — | not connected (32767) | ✔ |
+
+Sensor positions follow the installer guide's principle diagram (Calefa II V ITC, double indirect):
+cold water → flowmeter 36 → T3 → exchanger 01 → T4 → hot water out;
+district supply T5 → 01 → T6 → valve 37 (PICV + stepper 34) → return, and T5 → exchanger 02 → T1 → valve 22 (PICV + motor 34) → return;
+heating return → pump 40 → pressure transmitter 54 → 02 → T2 → heating flow. The radiator return has no temperature sensor.
 
 `129x1..129x4` (x = sensor 0..6): temperature, ADC count (12-bit, NTC: lower = hotter, 4090 = open), status word, signed offset.
 
@@ -76,16 +81,16 @@ document's numbers map 1:1 onto them (no −1 offset).
 | HR 6522 | RW | Bypass temperature (40 °C) | ~ |
 | HR 6523 | RW | Circulation pump present | ~ |
 | HR 6524 | RW | Circulation inlet temperature (45 °C) | ~ |
-| HR 6529 | R(W?) | DHW valve command (moves only while tapping) | ? |
+| HR 6529 | R(W?) | Hot water valve 37 target position, ×0.01 % (moves only while tapping) | ~ |
 | HR 6525-6538 | RW | other DHW parameters (undocumented) | ? |
 | IR 6502 | R | **DHW state: 2 = idle, 1 = tapping** (differs from the Sentio doc) | ✔ |
 | IR 6505 | R | DHW outlet temperature (T4) | ✔ |
 | IR 6506 | R | Primary supply temperature (T5) | ✔ |
-| IR 6507 | R | Primary return temperature (T6) | ✔ |
+| IR 6507 | R | Hot water exchanger primary return temperature (T6) | ✔ |
 | IR 6509 | R | Cold water temperature (T3) | ✔ |
 | IR 6510 | R | **DHW flow, l/h** (≈ 405 while tapping, 0 otherwise; checked with 2 L filled in ~17 s ≈ 424 l/h) | ✔ |
 | IR 10671 | R | DHW flow, unfiltered (noisier copy of IR 6510) | ~ |
-| IR 6511 | R | DHW valve position (follows HR 6529) | ~ |
+| IR 6511 | R | **Hot water valve 37 position**, ×0.01 % (0 idle; 32 % at tap opening, ~13–16 % at 405 l/h; same scale as heating valve IR 7706) | ~ |
 | IR 6513 | R | DHW regulator phase (4 idle, 2→3 tapping) | ~ |
 | IR 6514 | R | 830, constant | ? |
 | HR 10032-10035 | R | DHW PID internals (signed), active only while tapping | ? |
@@ -108,7 +113,7 @@ document's numbers map 1:1 onto them (no −1 offset).
 |---|---|---|---|
 | IR 7310 (= IR 10009) | R | **Heating circuit pressure**, ×0.01 bar (matches the display: 1.6 bar = 160) | ✔ |
 | IR 7701 | R | Heating supply temperature (T2) | ✔ |
-| IR 7702 | R | Heating return temperature (T1) | ✔ |
+| IR 7702 | R | Heating exchanger primary return temperature (T1); the radiator return has no sensor | ✔ |
 | IR 7703 | R | Heating flow target (heat curve output) | ~ |
 | IR 7706 (= IR 7304 = HR 7302) | R | ITC valve opening / heat demand (×0.01 %?) | ~ |
 | IR 7301 | R | Heating active (1/0) | ~ |
@@ -139,6 +144,6 @@ Hysteresis (1.0 → 1.1) and offset (5 → 6) changed **no** Modbus register (ho
 
 ## Still open
 
-* Units and scale of IR 6511 / HR 6529 (valve).
+* Confirm the ×0.01 % scale of IR 6511 / HR 6529: a full hot water draw should never exceed 10000.
 * Holding block 7700 (heat curve parameters), 10001-10190, the 6525-6538 extra parameters, and input block 10017-10728 (mostly zero, possibly statistics or energy counters).
 * The DI 7501-7512 bits (all 1).
