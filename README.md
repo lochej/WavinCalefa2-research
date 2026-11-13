@@ -5,6 +5,8 @@ Read data from a **Wavin Calefa II** district-heating apartment station
 document its register map. The unit is integrated into Home Assistant through
 an ESP32 gateway (Seeed XIAO ESP32-C6) running ESPHome (`esphome/calefa_modbus.yaml`).
 
+![Wavin Calefa 2](docs/calefa2.png)
+
 ## Hardware
 
 * Calefa II controller board, **RJ-M** port (Modbus slave). Do not use RJ-B,
@@ -15,6 +17,28 @@ On the RJ-M port, **pins 4 and 5 carry the RS-485 pair**. The other pins
 have not been identified. No 24 V was measured on RJ-M (only on RJ-B).
 
 Serial settings: **9600 bps, 8N1, slave address 1**.
+
+![Wavin Calefa 2 - RS-M port](docs/dhw212_modbus-rj-m.png)
+
+## ESP Modbus Module
+
+* Calefa II controller board, **RJ-M** port (Modbus slave). Do not use RJ-B,
+  which is the internal 57600 bps bus.
+* Seeed Xiao ESP32C6 or similar, ESP32 super mini...
+* SOIC 20 breakout PCB
+* RS485 transceiver IC 3.3V 
+* USB AC to DC 5V power brick
+
+![ESP rs485 breakout](docs/rs485_breakout.png)
+![ESP rs485 wiring](docs/breakout_wiring.png)
+![ESP rs485 connection](docs/module_connection.png)
+![ESP rs485 connection](docs/complete_module.png)
+![ESP rj45 pinout](docs/rj45_pinout.png)
+
+In esphome, load the `esphome/calefa_modbus.yaml` configuration to start polling data from the heating unit.
+The available USB port of the DHW-212-V-ITC is not powerful enough to power the ESP32, you'll need an external USB brick.
+
+Configure 9600 8bits no parity 1 stop bit in the Calefa 2 menu.
 
 ## Setup
 

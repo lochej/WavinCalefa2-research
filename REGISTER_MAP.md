@@ -7,6 +7,9 @@ slave 1, FW 2.12, HW 8, dev type 3.
 **Addresses are raw 0-based PDU addresses** (what goes on the wire). The Sentio
 document's numbers map 1:1 onto them (no −1 offset).
 
+![ftdi rj45 cable](docs/rj45_pinout.png)
+![ftdi rj45 wire](docs/ftdi_pinout.png)
+
 ## General rules
 
 * Temperatures: signed int16 × 0.01 °C. `32767` (0x7FFF) = not available / no sensor.
